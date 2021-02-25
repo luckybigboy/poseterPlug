@@ -1,0 +1,40 @@
+{
+  "manifest_version": 2,
+  "name": "宝贝团海报抓取插件",
+  "description": "宝贝团海报抓取插件",
+  "version": "1.0.7",
+  "browser_action": {
+    "default_icon": "logo-active.png",
+    "default_title": "宝贝团海报抓取",
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "16": "logo-active.png",
+    "19": "logo-active.png",
+    "48": "logo-active.png",
+    "128": "logo-active.png"
+  },
+  "permissions": ["http://*/", "bookmarks", "tabs", "history", "storage"],
+  "background": {
+    "persistent": false,
+    "scripts": ["js/background.js"]
+  },
+  "web_accessible_resources": [
+    "js/inject.js",
+    "fonts/element-icons.ttf",
+    "fonts/element-icons.woff",
+    "css/content.css",
+    "css/app.css"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://tbgr.huanleguang.com/material/*"],
+      "js": ["js/content.js"],
+      "css": ["css/content.css", "css/app.css"],
+      "font": ["fonts/element-icons.ttf", "fonts/element-icons.woff"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
